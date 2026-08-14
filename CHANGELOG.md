@@ -11,6 +11,7 @@ This file documents the changes made to the formatter with each release.
 ### Changed
 
 - Removed space between lambda function name and parameter list
+- Force @export and @onready annotations to stay on the same line as a variable but keep other annotations separate
 
 ### Fixed
 

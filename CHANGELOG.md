@@ -18,6 +18,7 @@ This file documents the changes made to the formatter with each release.
 - fixed certain export annotations being moved out of their respective groups (#308)
 - Preserve up to one blank line used to group elements in "containers" like enums
 - Fixed losing blank line between statements in a body if the previous statement has an inline comment (#320, thanks @Buitragox for the fix)
+- Fixed various edge cases with ignored directories: paths are now normalized before comparison
 
 ## Release 0.24.0 (2026-07-25)
 

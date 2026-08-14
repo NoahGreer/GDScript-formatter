@@ -173,7 +173,7 @@ func _enter_tree() -> void:
 	installer = FormatterInstaller.new(formatter_cache_dir)
 	add_child(installer)
 	installer.installation_completed.connect(
-		func _on_installation_completed(binary_path: String) -> void:
+		func _on_installation_completed (binary_path: String) -> void:
 			set_editor_setting(SETTING_FORMATTER_PATH, binary_path)
 			_has_formatter_command = has_command(binary_path)
 			if not _has_formatter_command:
@@ -188,7 +188,7 @@ func _enter_tree() -> void:
 				menu.update_menu(true),
 	)
 	installer.installation_failed.connect(
-		func _on_installation_failed(error_message: String) -> void:
+		func _on_installation_failed (error_message: String) -> void:
 			push_error("Formatter installation failed: ", error_message),
 	)
 
@@ -306,6 +306,8 @@ func _on_resource_saved(saved_resource: Resource) -> void:
 	if saved_resource is not GDScript:
 		return
 	var script := saved_resource as GDScript
+	var do_format_on_save := get_editor_setting(SETTING_FORMAT_ON_SAVE) as bool
+
 	# We should normally never hit this condition, I'm adding it as a
 	# safety check and to document issues with format on save and built-in
 	# scripts. We support formatting built-in scripts, but not formatting them
@@ -328,7 +330,6 @@ func _on_resource_saved(saved_resource: Resource) -> void:
 			_already_warned_about_builtin_format_on_save = true
 		return
 
-	var do_format_on_save := get_editor_setting(SETTING_FORMAT_ON_SAVE) as bool
 	var editorconfig_format_on_save = get_editorconfig_format_on_save(script.resource_path)
 	if editorconfig_format_on_save != null:
 		do_format_on_save = editorconfig_format_on_save as bool

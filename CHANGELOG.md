@@ -12,6 +12,7 @@ This file documents the changes made to the formatter with each release.
 
 - Removed space between lambda function name and parameter list
 - Force @export and @onready annotations to stay on the same line as a variable but keep other annotations separate
+- Stop trying to format any code containing parse errors. Until now we tried to still format definitions around the code with errors, but this can lead to cases where the formatter produces invalid code
 
 ### Fixed
 
